@@ -89,13 +89,20 @@ nnoremap <C-l> <C-w>l
 
 " Disable accidental window swapping/moving commands
 " These prevent you from accidentally messing up your window layout:
-nnoremap <C-w>x <Nop>   " Disable Ctrl+W x (swap panes)
-nnoremap <C-w>r <Nop>   " Disable Ctrl+W r (rotate panes)
-nnoremap <C-w>R <Nop>   " Disable Ctrl+W R (rotate panes backward)
-nnoremap <C-w>H <Nop>   " Disable Ctrl+W H (move pane to far left)
-nnoremap <C-w>J <Nop>   " Disable Ctrl+W J (move pane to bottom)
-nnoremap <C-w>K <Nop>   " Disable Ctrl+W K (move pane to top)
-nnoremap <C-w>L <Nop>   " Disable Ctrl+W L (move pane to far right)
+" Disable Ctrl+W x (swap panes)
+nnoremap <C-w>x <Nop>
+" Disable Ctrl+W r (rotate panes)
+nnoremap <C-w>r <Nop>
+" Disable Ctrl+W R (rotate panes backward)
+nnoremap <C-w>R <Nop>
+" Disable Ctrl+W H (move pane to far left)
+nnoremap <C-w>H <Nop>
+" Disable Ctrl+W J (move pane to bottom)
+nnoremap <C-w>J <Nop>
+" Disable Ctrl+W K (move pane to top)
+nnoremap <C-w>K <Nop>
+" Disable Ctrl+W L (move pane to far right)
+nnoremap <C-w>L <Nop>
                         " You can still move CURSOR between panes with Ctrl+h/j/k/l
 
 " Better copy/paste (visual mode to system clipboard)
@@ -128,14 +135,20 @@ if executable('rg')
 endif
 
 " Search mappings with examples:
-nnoremap <Leader>g :grep<space>     " Usage: ',g function' searches for 'function' in all files
-nnoremap <Leader>f :find<space>**/* " Usage: ',f config.js' finds files named config.js
+" Usage: ',g function' searches for 'function' in all files
+nnoremap <Leader>g :grep<space>
+" Usage: ',f script' then type to get '*script*'
+nnoremap <Leader>f :find<space>*<Left>
 
 " Navigate search results:
-nnoremap <Leader>n :cnext<CR>       " Usage: ',n' go to next search result
-nnoremap <Leader>N :cprev<CR>       " Usage: ',N' go to previous search result
-nnoremap <Leader>l :copen<CR>       " Usage: ',l' open list of all search results in bottom window
-nnoremap <Leader>c :cclose<CR>      " Usage: ',c' close the search results window
+" Usage: ',n' go to next search result
+nnoremap <Leader>n :cnext<CR>
+" Usage: ',N' go to previous search result
+nnoremap <Leader>N :cprev<CR>
+" Usage: ',l' open list of all search results in bottom window
+nnoremap <Leader>l :copen<CR>
+" Usage: ',c' close the search results window
+nnoremap <Leader>c :cclose<CR>
 
 " ====================================================================
 " CODE COMPLETION (Built-in)
