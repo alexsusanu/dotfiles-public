@@ -655,3 +655,59 @@ bind '"\t": menu-complete'
 # - If multiple matches, press Tab repeatedly to cycle through them
 # - Case doesn't matter: 'CD doc<Tab>' also works
 
+# Vim workflow help function
+vimrchelp() {
+    cat << 'HELP'
+🔧 VIM WORKFLOW CHEAT SHEET (Your Current Setup)
+
+📁 FILE NAVIGATION:
+  :find filename        - Find & open file anywhere in project
+  ,f filename<Tab>      - Your custom find mapping + tab completion
+  :e path/to/file       - Open specific file path
+  :e .                  - Browse current directory
+
+📋 BUFFER MANAGEMENT:
+  :ls                   - List all open files/buffers
+  :b filename<Tab>      - Switch to buffer (tab completes)
+  :b#                   - Switch to previous buffer
+  :b1, :b2, :b3        - Switch to buffer number
+
+🔍 SEARCH ACROSS FILES:
+  ,g search_term        - Search for text across all project files
+  ,n                    - Next search result
+  ,N                    - Previous search result  
+  ,l                    - Open search results list
+  ,c                    - Close search results list
+
+🔍 SEARCH WITHIN FILE:
+  /searchterm           - Search in current file
+  n                     - Next match
+  N                     - Previous match
+  ,h                    - Clear search highlighting
+
+🪟 WINDOW NAVIGATION:
+  Ctrl+h/j/k/l         - Move between split windows
+  :sp filename         - Split horizontally
+  :vsp filename        - Split vertically
+
+💾 QUICK ACTIONS:
+  ,w                    - Quick save
+  ,q                    - Quick quit
+  ,y (visual mode)     - Copy to system clipboard
+  ,p                    - Paste from system clipboard
+
+📝 EXAMPLE WORKFLOW:
+  1. vim                     # Start in project root
+  2. :find config.js         # Find and open config file
+  3. ,g function login       # Search for login functions
+  4. ,n                      # Jump through matches
+  5. :b config<Tab>          # Switch back to config
+  6. ,w                      # Save
+
+💡 PRO TIPS:
+  - Tab completion works with :find and :b
+  - Your search uses ripgrep (faster than grep)
+  - Backup/undo files saved in ~/.vim/ directories
+  - Trailing whitespace auto-removed on save
+HELP
+}
