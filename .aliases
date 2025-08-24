@@ -1,0 +1,31 @@
+# CLI ALIASES
+alias c='clear'
+alias h='history'
+alias uu='uuidgen | pbcopy'
+alias cp='cp -i'
+alias mv='mv -i'
+alias rm='rm -i'
+alias view='python3 -m http.server'
+alias chrome="open -a 'Google Chrome'"
+alias dt='capture_date'
+
+# Better aliases (installed plugins from brew)
+alias ls='eza -a'
+alias ll='eza -la --icons'
+alias bat='bat --color=always --wrap never'
+alias less='less -RS'
+alias rg='rg -i -C 10 --color=always'
+alias find='fd'
+
+# github copilot alias
+alias cox="gh copilot explain"
+alias cos="gh copilot suggest"
+
+# GIT aliases
+alias gc='git commit -m'
+alias gs='git status'
+alias gpl='git pull'
+alias gph='git push'
+
+# fzf with preview using bat
+alias fzfp='fzf --preview "bat --color=always --style=header {}"'

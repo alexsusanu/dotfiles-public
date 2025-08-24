@@ -138,7 +138,7 @@ endif
 " Usage: ',g function' searches for 'function' in all files
 nnoremap <Leader>g :grep<space>
 " Usage: ',f script' then type to get '*script*'
-nnoremap <Leader>f :find<space>*<Left>
+nnoremap <Leader>f :find<space>*<space>*<Left>
 
 " Navigate search results:
 " Usage: ',n' go to next search result
