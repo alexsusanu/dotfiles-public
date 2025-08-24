@@ -533,17 +533,20 @@ create3repo() {
 # GIT SETUP STOP ===============================
 
 # quick git push option, just current date and push
+# checks the upstream, default usually origin/github but in case I push to others
 backup() {
     git add . && git commit -m "backup $(date '+%Y-%m-%d %H:%M')" && git push
 
-    # git status, pull, push again github/main
-    git branch --set-upstream-to=github/main
+    # Get the first remote (usually origin)
+    local remote=$(git remote | head -n1)
+    git branch --set-upstream-to=$remote/main
     if [ $? -eq 0 ]; then
-        echo -e "${LIME}UPSTREAM SET TO GIHTUB/MAIN${NC}"
+      echo -e "${LIME}UPSTREAM SET TO $remote/MAIN${NC}"
     else
-        echo -e "${RED}Setting upstream failed${NC}"
+      echo -e "${RED}Setting upstream failed${NC}"
     fi
 }
+
 
 capture_date() {
     datetime=$(date -v -2H +"%Y-%m-%dT%H:%M:%S")
