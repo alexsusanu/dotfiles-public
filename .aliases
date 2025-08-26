@@ -1,3 +1,7 @@
+# SOURCE
+alias sourcez='source ~/.zshrc'
+alias sourceb='source ~/.bashrc'
+
 # CLI ALIASES
 alias c='clear'
 alias h='history'

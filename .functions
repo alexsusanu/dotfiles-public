@@ -1,6 +1,15 @@
 # Shell functions
 # Add this to your .bashrc or .zshrc: source ~/dotfiles/functions
 
+# Color definitions
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+YELLOW='\033[1;33m'
+PURPLE='\033[0;35m'
+RED='\033[0;31m'
+NC='\033[0m'
+LIME='\033[38;5;154m'
+
 # Create directory and cd into it
 mkcd() {
     mkdir -p "$1" && cd "$1"
@@ -45,22 +54,25 @@ docsearch() {
 # Code search function for CURRENT DIRECTORY AND SUBDIRECTORIES
 codesearch() {
     if [[ -z "$1" ]]; then
-        echo "Usage: codesearch <search_term>"
-        return 1
+    echo "Usage: codesearch <search_term>"
+    return 1
     fi
 
-    # Find files containing the search term in current directory and subdirectories
-    local files=$(grep -r -l "$1" . 2>/dev/null | grep -v ".git/")
+    local files
+    files=$(rg -l --color=never --hidden --glob '!.git/' "$1" 2>/dev/null)
 
     if [[ -z "$files" ]]; then
-        echo "No files found containing: $1"
-        return 1
+    echo "No files found containing: $1"
+    return 1
     fi
 
-    # Use fzf to pick which file, with preview showing search matches
-    local selected=$(echo "$files" | fzf --preview "rg --color=always -n -C 3 '$1' {}" --bind 'ctrl-u:preview-page-up,ctrl-d:preview-page-down' --with-nth=-1 --delimiter='/')
+    local selected
+    selected=$(echo "$files" | fzf --preview "rg --color=always -n -C 3 '$1' {}" --bind \
+    'ctrl-u:preview-page-up,ctrl-d:preview-page-down' --with-nth=-1 --delimiter='/')
     [[ -n "$selected" ]] && vim "$selected"
 }
+
+
 
 # Vim workflow help function
 vimrchelp() {
@@ -449,14 +461,6 @@ alias ch='cli_help'
 gph3() {
     local branch=$(git branch --show-current)
 
-    # Color definitions
-    local GREEN='\033[0;32m'
-    local BLUE='\033[0;34m'
-    local YELLOW='\033[1;33m'
-    local PURPLE='\033[0;35m'
-    local RED='\033[0;31m'
-    local NC='\033[0m'
-    local LIME='\033[38;5;154m'
 
     git push github "$branch"
     if [ $? -eq 0 ]; then
