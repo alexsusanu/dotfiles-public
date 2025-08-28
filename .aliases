@@ -32,4 +32,4 @@ alias gpl='git pull'
 alias gph='git push'
 
 # fzf with preview using bat
-alias fzfp='fzf --preview "bat --color=always --style=header {}"'
+alias fzfp='fzf --preview "bat --color=always --style=header {}" -preview-window=right:70% --bind "ctrl-u:preview-page-up,ctrl-d:preview-page-down"'

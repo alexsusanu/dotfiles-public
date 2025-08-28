@@ -50,7 +50,6 @@ docsearch() {
 }
 
 
-
 # Code search function for CURRENT DIRECTORY AND SUBDIRECTORIES
 codesearch() {
     if [[ -z "$1" ]]; then
@@ -59,7 +58,7 @@ codesearch() {
     fi
 
     local files
-    files=$(rg -l --color=never --hidden --glob '!.git/' "$1" 2>/dev/null)
+    files=$(rg -i -l --color=never --hidden --glob '!.git/' "$1" 2>/dev/null)
 
     if [[ -z "$files" ]]; then
     echo "No files found containing: $1"
@@ -67,7 +66,7 @@ codesearch() {
     fi
 
     local selected
-    selected=$(echo "$files" | fzf --preview "rg --color=always -n -C 3 '$1' {}" --bind \
+    selected=$(echo "$files" | fzf --preview "rg -i --color=always -n -C 10 '$1' {}" -preview-window=right:70% --bind \
     'ctrl-u:preview-page-up,ctrl-d:preview-page-down' --with-nth=-1 --delimiter='/')
     [[ -n "$selected" ]] && vim "$selected"
 }
