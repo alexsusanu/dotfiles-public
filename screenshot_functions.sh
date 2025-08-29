@@ -6,7 +6,7 @@ get_screenshot_path() {
     local win_screenshots="/mnt/c/Users/$(whoami)/Pictures/Screenshots"
     
     # Find the most recent image file
-    local latest_screenshot=$(ls -t "$win_screenshots"/*.{png,jpg,jpeg} 2>/dev/null | head -n 1)
+    local latest_screenshot=$(find "$win_screenshots" -name "*.png" -o -name "*.jpg" -o -name "*.jpeg" 2>/dev/null | xargs ls -t | head -n 1)
     
     if [[ -n "$latest_screenshot" ]]; then
         # Copy path to clipboard
@@ -23,7 +23,7 @@ get_recording_path() {
     local win_recordings="/mnt/c/Users/$(whoami)/Videos/Captures"
     
     # Find the most recent video file
-    local latest_recording=$(ls -t "$win_recordings"/*.{mp4,avi,mkv} 2>/dev/null | head -n 1)
+    local latest_recording=$(find "$win_recordings" -name "*.mp4" -o -name "*.avi" -o -name "*.mkv" 2>/dev/null | xargs ls -t | head -n 1)
     
     if [[ -n "$latest_recording" ]]; then
         # Copy path to clipboard
