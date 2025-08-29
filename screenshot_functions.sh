@@ -2,37 +2,34 @@
 # Use Win+Shift+S for screenshots, Win+G for recordings
 
 get_screenshot_path() {
-    # Windows default Screenshots folder path in WSL
     local win_screenshots="/mnt/c/Users/$(whoami)/Pictures/Screenshots"
     
-    # Find the most recent image file
-    local latest_screenshot=$(find "$win_screenshots" -maxdepth 1 \( -name "*.png" -o -name "*.jpg" -o -name "*.jpeg" \) -printf '%T@ %p\n' 2>/dev/null | sort -nr | head -n 1 | cut -d' ' -f2-)
+    local latest_screenshot=$(
+        cd "$win_screenshots" && ls -1t *.png 2>/dev/null | head -n 1
+    )
     
     if [[ -n "$latest_screenshot" ]]; then
-        # Copy path to clipboard
-        echo "$latest_screenshot" | clip.exe
-        echo "Latest screenshot path copied to clipboard:"
-        echo "$latest_screenshot"
+        local full_path="$win_screenshots/$latest_screenshot"
+        echo -n "$full_path" | clip.exe
+        echo "Path copied: $full_path"
     else
-        echo "No screenshots found in $win_screenshots"
+        echo "No screenshots found"
     fi
 }
 
 get_recording_path() {
-    # Windows default Videos/Captures folder (Xbox Game Bar recordings)
     local win_recordings="/mnt/c/Users/$(whoami)/Videos/Captures"
     
-    # Find the most recent video file
-    local latest_recording=$(find "$win_recordings" -maxdepth 1 \( -name "*.mp4" -o -name "*.avi" -o -name "*.mkv" \) -printf '%T@ %p\n' 2>/dev/null | sort -nr | head -n 1 | cut -d' ' -f2-)
+    local latest_recording=$(
+        cd "$win_recordings" && ls -1t *.{mp4,avi,mkv} 2>/dev/null | head -n 1
+    )
     
     if [[ -n "$latest_recording" ]]; then
-        # Copy path to clipboard
-        echo "$latest_recording" | clip.exe
-        echo "Latest recording path copied to clipboard:"
-        echo "$latest_recording"
+        local full_path="$win_recordings/$latest_recording"
+        echo -n "$full_path" | clip.exe
+        echo "Path copied: $full_path"
     else
-        echo "No recordings found in $win_recordings"
-        echo "Make sure to use Win+G to record videos"
+        echo "No recordings found"
     fi
 }
 
